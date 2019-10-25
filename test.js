@@ -20,8 +20,11 @@ app.get('/', function (req, res) {
 			// console.log(indexName);
 
 			if(results[indexName] !== undefined ) {
-				
-				console.log(results[indexName]);
+				results.push(indexName);
+				// return results[indexName].value(indexName);
+				// return result[indexName[0]];
+
+				console.log(results);
 			}
 			// else{
 
