@@ -2,14 +2,12 @@ const express = require("express");
 const fs = require("fs");
 const csv = require("csv-parser");
 const app = express();
-
+const results = {};
 
 
 
 /*Ma route sur localhost:8000*/
 app.get('/', function (req, res) {
-
-	const results = {};
 	res.send(
 		
 
@@ -18,19 +16,19 @@ app.get('/', function (req, res) {
 		.pipe(csv()) /*Sans le pipe il ne récupère pas les donnée du csv on voit apparaitre Bluffer*/
 		.on('data', data => {
 
-			let indexName = data.lat + ',' + data.lon;
+			let indexName = data.lat + '-' + data.lon;
 			// console.log(indexName);
 
 			if(results[indexName] !== undefined ) {
-				data.event_type++;
-				console.log(data.event_type);
+				return indexName;
+				console.log(indexName);
 			}
-			else{
+			// else{
 
-			}
+			// }
 		})		
 		.on('end', () => {
-			console.log('CSV file successfully processed');
+			console.log('toto');
 		})
 	)
 
@@ -41,11 +39,10 @@ app.post('/adot', function(req, res) {
 	res.send(
 		fs.createReadStream('events.csv')
 		.pipe(csv())
-		.on('data', (row) => {
+		.on('data', data => {
 
-			var arr = [];
-			arr = [lat= row.lat, lon= row.lon, event= row.event_type];
-			console.log(arr);
+			// arr = [lat= row.lat, lon= row.lon, event= row.event_type];
+			// console.log(arr);
 			// console.log(row);
 		})		
 		// .on('end', () => {
