@@ -20,6 +20,7 @@ app.get('/', function (req, res) {
 			// console.log(indexName);
 
 			if(results[indexName] !== undefined ) {
+				results = indexName;
 				indexName ++;
 				// return results[indexName].value(indexName);
 				// return result[indexName[0]];
@@ -27,7 +28,8 @@ app.get('/', function (req, res) {
 				// console.log(results);
 			}
 			else{
-				results[indexName] = 1;
+				data.event_type = 1;
+				// console.log(data);
 
 			}
 		})		
