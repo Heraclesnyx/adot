@@ -20,18 +20,19 @@ app.get('/', function (req, res) {
 			// console.log(indexName);
 
 			if(results[indexName] !== undefined ) {
-				results.push(indexName);
+				indexName ++;
 				// return results[indexName].value(indexName);
 				// return result[indexName[0]];
 
-				console.log(results);
+				// console.log(results);
 			}
-			// else{
+			else{
+				results[indexName] = 1;
 
-			// }
+			}
 		})		
 		.on('end', () => {
-			console.log('toto');
+			console.log(results);
 		})
 	)
 
