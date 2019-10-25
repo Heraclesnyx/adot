@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const csv = require("csv-parser");
 const app = express();
+
 const results = {};
 
 
@@ -9,19 +10,18 @@ const results = {};
 /*Ma route sur localhost:8000*/
 app.get('/', function (req, res) {
 	res.send(
-		
 
 		/*Récupération du fichier .csv*/
-		fs.createReadStream('events.csv') /*Boucle pour récupérer le fichier csv*/
+		fs.createReadStream('events.csv') 
 		.pipe(csv()) /*Sans le pipe il ne récupère pas les donnée du csv on voit apparaitre Bluffer*/
-		.on('data', data => {
+		.on('data', data => { /*Boucle pour récupérer le fichier csv*/
 
 			let indexName = data.lat + '-' + data.lon;
 			// console.log(indexName);
 
 			if(results[indexName] !== undefined ) {
-				return indexName;
-				console.log(indexName);
+				
+				console.log(results[indexName]);
 			}
 			// else{
 
