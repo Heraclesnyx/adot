@@ -8,43 +8,47 @@ const app = express();
 
 /*Ma route sur localhost:8000*/
 app.get('/', function (req, res) {
+
+	var arr = {};
 	res.send(
+		
 
 		/*Récupération du fichier .csv*/
 		fs.createReadStream('events.csv')
 		.pipe(csv())
-		.on('data', (row) => {
+		.on('data', (row) => {/*Boucle pour récupérer le fichier csv*/
 
-			var arr = {};
-			arr = [lat= row.lat, lon= row.lon, event= row.event_type];
+			arr = {lat: row.lat, lon: row.lon, event: row.event_type};
 
-			// console.log(arr);
+			console.log(arr);
 
+			// var separator = arr[i].split(' ');
+
+			// 	console.log(separator);
 			for(var i= 0; i< arr.length; i++){
-
-				// var old_arr= arr[i - 1];
+				
+				var old_arr= arr[i - 1];
 				// 	old_arr[event];
 				// console.log(arr[i]);
 				// console.log(arr[2]);
-				if(arr[i] == arr[0] || arr[i] == arr[1] || arr[i] == arr[2]){
-					var new_arr = arr[2].push(arr[i]);
-					// arr[2].push(arr[i]);
+				if(arr[i] == arr[0]  ||  arr[i] == arr[1] &&  arr[i]== old_arr || arr[i] == arr[2]){
+					// var new_arr = arr[0].push(arr[i]);
+					// var arry = arr.push(arr[i]);
 					// arr[i] == arr[lat];
-				// console.log(arr[2]);
+				// console.log(arr[0]);
 				// console.log(arr[1]);
 				// console.log(arr[2]);
 
 				// // // 	console.log(row.lat);
 				// // // 	console.log(row.lon);
 				// // // 	// return arr[i] = arr;
-					console.log(new_arr);
+					// console.log(row);
 					
 				}
 				// return arr;
 				// console.log(arr);
 				// 	return arr.push(arr[event]);
 				// }
-				// return arr;
 				// console.log(arr[i]);
 			}
 			// return arr;
