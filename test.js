@@ -12,33 +12,24 @@ app.get('/', function (req, res) {
 	res.send(
 
 		/*Récupération du fichier .csv*/
-		fs.createReadStream('events.csv') 
-		.pipe(csv()) /*Sans le pipe il ne récupère pas les donnée du csv on voit apparaitre Bluffer*/
-		.on('data', data => { /*Boucle pour récupérer le fichier csv*/
+		fs.createReadStream('events.csv')
+		.pipe(csv())
+		.on('data', data =>{ 
 
-			let indexName = data.lat + '-' + data.lon;
+			// let indexName = data.lat + ',' + data.lon;
 			// console.log(indexName);
-
-			if(results[indexName] !== undefined ) {
-				results = indexName;
-				indexName ++;
-				// return results[indexName].value(indexName);
-				// return result[indexName[0]];
-
-				// console.log(results);
-			}
-			else{
-				data.event_type = 1;
-				// console.log(data);
-
-			}
-		})		
+			// if (results[indexName] !== undefined){
+        	//    Récupérer le type d'évenement du data et vérifier si il est présent (oui: on incrémente; non: on ajoute la propriété avec une value = 1)
+        	// console.log(data);
+    		// }
+    		// else{
+            //    Ajouter la ligne formaté comme on le souhaite en set le type d'évenement à 1
+        	// }
+    	})
 		.on('end', () => {
 			console.log(results);
 		})
-	)
-
-		
+	)	
 });
 
 app.post('/adot', function(req, res) {
