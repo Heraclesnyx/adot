@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 	const results = {};
 
 	// res.setHeader('Content-Type', 'application/json');
-	res.send(
+	// res.send(
 
 
 		/*Récupération du fichier .csv*/
@@ -20,16 +20,13 @@ app.get('/', function (req, res) {
 		.on('data', data =>{ 
 
 			let indexName = data.lat + '-' + data.lon;
-			// console.log('toto');
 
             if (results[indexName] !== undefined){
                 //  Récupérer le type d'évenement du data et vérifier si il est présent (oui: on incrémente; non: on ajoute la propriété avec une value = 1)
                 if (results[indexName][data.event_type] !== undefined)
                     results[indexName][data.event_type]++;
-                // console.log('toto_2');
                 else
                     results[indexName][data.event_type] = 1;
-                // console.log('toto_3');
             } else {
                 let ad = {
                     lat: data.lat,
@@ -39,15 +36,14 @@ app.get('/', function (req, res) {
                 ad[data.event_type] = 1;
 
                 //  Push into global object
-                results[data.lat + '-' + data.lon] = results;
-                // console.log(results);
-                // console.log('toto_4');
+                results[data.lat + '-' + data.lon] = ad;
             }
     	})
 		.on('end', () => {
 			console.log(results);
+			// res.send(results);
 		})
-	)
+	// )
 	// res.send(results);
 
 });
