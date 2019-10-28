@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 		.pipe(csv())
 		.on('data', data =>{ 
 
-			let indexName = data.lat + ',' + data.lon;
+			let indexName = data.lat + '-' + data.lon;
 			// console.log('toto');
 
             if (results[indexName] !== undefined){
