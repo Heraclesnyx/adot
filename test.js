@@ -10,7 +10,9 @@ const app = express();
 app.get('/', function (req, res) {
 	const results = {};
 
+	// res.setHeader('Content-Type', 'application/json');
 	res.send(
+
 
 		/*Récupération du fichier .csv*/
 		fs.createReadStream('events.csv')
@@ -39,10 +41,11 @@ app.get('/', function (req, res) {
             }
     	})
 		.on('end', () => {
-			// console.log(results);
+			console.log(results);
 		})
 	)
 	// res.send(results);
+
 });
 
 
