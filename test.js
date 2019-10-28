@@ -16,12 +16,29 @@ app.get('/', function (req, res) {
 		.pipe(csv())
 		.on('data', data =>{ 
 
-			// let indexName = data.lat + ',' + data.lon;
-			// console.log(indexName);
-			// if (results[indexName] !== undefined){
-        	//    Récupérer le type d'évenement du data et vérifier si il est présent (oui: on incrémente; non: on ajoute la propriété avec une value = 1)
-        	// console.log(data);
-    		// }
+			let indexName = data.lat + '-' + data.lon;
+			// console.log(results[indexName]);
+			let arr = {
+				lat : data.lat,
+				lon : data.lon
+			}
+			arr[data.event_type] = 1;
+
+			// let toto = results.push();
+			// console.log(arr);
+
+			// for (let i = 0; i < indexName.length; i++) {
+			//     if (results[i] === undefined)
+			//       results[i] = {};
+
+			//     results[i].lat = results[indexName]
+			// }
+			console.log(results.push(arr));
+			if (results[indexName] !== undefined){
+   //      	//    Récupérer le type d'évenement du data et vérifier si il est présent (oui: on incrémente; non: on ajoute la propriété avec une value = 1)
+   			// results .= indexName;
+        	// console.log(results);
+    		}
     		// else{
             //    Ajouter la ligne formaté comme on le souhaite en set le type d'évenement à 1
         	// }
